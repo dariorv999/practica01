@@ -8,6 +8,6 @@ package com.practica01.practica01.domain;
  *
  * @author lelec
  */
-public class Categoria {
+public class Suculenta {
     
 }

@@ -8,6 +8,6 @@ package com.practica01.practica01.repository;
  *
  * @author lelec
  */
-public class CategoriaRepository {
+public class SuculentaRepository {
     
 }

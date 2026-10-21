@@ -8,6 +8,6 @@ package com.practica01.practica01.controller;
  *
  * @author lelec
  */
-public class CategoriaController {
+public class SuculentaController {
     
 }
