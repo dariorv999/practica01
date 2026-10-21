@@ -1,0 +1,57 @@
+<section th:fragment="formulario">
+    <div class="row py-4 mb-2 bg-light">
+        <div class="col-md-1"></div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-primary"
+                    data-bs-toggle="modal" data-bs-target="#suculentaModal"
+                    data-modo="agregar" th:data-titulo="#{suculenta.agregar}">
+                <i class="fa-solid fa-plus"></i> [[#{suculenta.agregar}]]
+            </button>
+        </div>
+    </div>
+    <div class="modal fade" id="suculentaModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form id="suculentaForm" method="post" th:action="@{/suculenta/guardar}">
+                    <div class="modal-header" id="suculentaModalHeader">
+                        <h5 class="modal-title" id="suculentaModalTitulo"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="[[#{accion.cerrar}]]"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="suculentaId" name="idSuculenta"/>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="suculentaNombreComun" class="form-label">[[#{suculenta.nombreComun}]]</label>
+                                <input type="text" id="suculentaNombreComun" name="nombreComun" class="form-control" maxlength="80" required/>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="suculentaNombreCientifico" class="form-label">[[#{suculenta.nombreCientifico}]]</label>
+                                <input type="text" id="suculentaNombreCientifico" name="nombreCientifico" class="form-control" maxlength="120" required/>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="suculentaFamilia" class="form-label">[[#{suculenta.familia}]]</label>
+                                <input type="text" id="suculentaFamilia" name="familia" class="form-control" maxlength="60"/>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="suculentaColorPrincipal" class="form-label">[[#{suculenta.colorPrincipal}]]</label>
+                                <input type="text" id="suculentaColorPrincipal" name="colorPrincipal" class="form-control" maxlength="40"/>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="suculentaAlturaCm" class="form-label">[[#{suculenta.alturaCm}]]</label>
+                                <input type="number" id="suculentaAlturaCm" name="alturaCm" class="form-control" min="0.1" step="0.1" required/>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="suculentaPrecioEstimado" class="form-label">[[#{suculenta.precioEstimado}]]</label>
+                                <input type="number" id="suculentaPrecioEstimado" name="precioEstimado" class="form-control" min="0" step="0.01" required/>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="suculentaNivelRiego" class="form-label">[[#{suculenta.nivelRiego}]]</label>
+                                <select id="suculentaNivelRiego" name="nivelRiego" class="form-select" required>
+                                    <option value="Bajo">[[#{suculenta.riego.bajo}]]</option>
+                                    <option value="Medio">[[#{suculenta.riego.medio}]]</option>
+                                    <option value="Alto">[[#{suculenta.riego.alto}]]</option>
+                                </select>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for="suculentaRutaImagen" class="form-label">[[#{suculenta.rutaImagen}]]</label>
+                                <input type="url" id="suculentaRutaImagen" name="rutaImagen" class="form-control" maxlength="1024"
