@@ -1,13 +1,10 @@
 <section th:fragment="formulario">
-    <div class="row py-4 mb-2 bg-light">
-        <div class="col-md-1"></div>
-        <div class="col-md-3">
-            <button type="button" class="btn btn-primary"
-                    data-bs-toggle="modal" data-bs-target="#suculentaModal"
-                    data-modo="agregar" th:data-titulo="#{suculenta.agregar}">
-                <i class="fa-solid fa-plus"></i> [[#{suculenta.agregar}]]
-            </button>
-        </div>
+    <div class="container py-4">
+        <button type="button" class="btn btn-cafe"
+                data-bs-toggle="modal" data-bs-target="#suculentaModal"
+                data-modo="agregar" th:data-titulo="#{suculenta.agregar}">
+            <i class="fa-solid fa-plus"></i> [[#{suculenta.agregar}]]
+        </button>
     </div>
     <div class="modal fade" id="suculentaModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -54,4 +51,96 @@
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="suculentaRutaImagen" class="form-label">[[#{suculenta.rutaImagen}]]</label>
-                                <input type="url" id="suculentaRutaImagen" name="rutaImagen" class="form-control" maxlength="1024"
+                                <input type="url" id="suculentaRutaImagen" name="rutaImagen" class="form-control" maxlength="1024" placeholder="https://..."/>
+                                <img id="suculentaPreview" class="d-none mt-2" alt="[[#{suculenta.imagen}]]" height="150"/>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <div class="form-check">
+                                    <input type="checkbox" id="suculentaActivo" name="activo" class="form-check-input"/>
+                                    <label for="suculentaActivo" class="form-check-label">[[#{suculenta.activo}]]</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secundario" data-bs-dismiss="modal">
+                            <i class="fa-solid fa-xmark"></i> [[#{accion.cerrar}]]
+                        </button>
+                        <button type="submit" class="btn btn-cafe">
+                            <i class="fa-solid fa-floppy-disk"></i> [[#{accion.guardar}]]
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section th:fragment="listado" class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h4 class="mb-0">[[#{suculenta.listado}]]</h4>
+        <span class="resumen-total">
+            <i class="fa-solid fa-seedling"></i> [[#{suculenta.total}]]: [[${totalSuculentas}]]
+        </span>
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4"
+         th:if="${suculentas != null and !suculentas.empty}">
+        <div class="col" th:each="s : ${suculentas}">
+            <div class="card h-100 tarjeta-suculenta" th:classappend="${!s.activo} ? 'tarjeta-inactiva'">
+                <img th:if="${s.rutaImagen != null and !#strings.isEmpty(s.rutaImagen)}"
+                     th:src="${s.rutaImagen}" th:alt="${s.nombreComun}" class="imagen-suculenta"/>
+                <div th:unless="${s.rutaImagen != null and !#strings.isEmpty(s.rutaImagen)}" class="sin-imagen">
+                    <i class="fa-solid fa-seedling"></i>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-1">
+                        <h5 class="card-title mb-0">[[${s.nombreComun}]]</h5>
+                        <span class="badge" th:classappend="${s.activo} ? 'badge-estado-activa' : 'badge-estado-inactiva'"
+                              th:text="${s.activo} ? #{suculenta.estado.activa} : #{suculenta.estado.inactiva}"></span>
+                    </div>
+                    <p class="nombre-cientifico mb-2">[[${s.nombreCientifico}]]</p>
+                    <p class="small mb-2">
+                        <span th:if="${s.familia != null}">[[${s.familia}]]</span>
+                        <span th:if="${s.familia != null and s.colorPrincipal != null}"> · </span>
+                        <span th:if="${s.colorPrincipal != null}">[[${s.colorPrincipal}]]</span>
+                    </p>
+                    <p class="precio-suculenta mb-2">₡[[${#numbers.formatDecimal(s.precioEstimado, 1, 'COMMA', 2, 'POINT')}]]</p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge insignia-cafe" th:title="#{suculenta.alturaCm}">
+                            <i class="fa-solid fa-ruler-vertical"></i> [[${s.alturaCm}]] cm
+                        </span>
+                        <span class="badge" th:classappend="${'badge-riego-' + #strings.toLowerCase(s.nivelRiego)}"
+                              th:title="#{suculenta.nivelRiego}">
+                            <i class="fa-solid fa-droplet"></i> [[${s.nivelRiego}]]
+                        </span>
+                    </div>
+                </div>
+                <div class="card-footer d-flex gap-2">
+                    <button type="button" class="btn btn-editar btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#suculentaModal"
+                            data-modo="editar" th:data-titulo="#{accion.actualizar}"
+                            th:data-id="${s.idSuculenta}"
+                            th:data-nombre-comun="${s.nombreComun}"
+                            th:data-nombre-cientifico="${s.nombreCientifico}"
+                            th:data-familia="${s.familia != null ? s.familia : ''}"
+                            th:data-color-principal="${s.colorPrincipal != null ? s.colorPrincipal : ''}"
+                            th:data-altura-cm="${s.alturaCm}"
+                            th:data-precio-estimado="${s.precioEstimado}"
+                            th:data-nivel-riego="${s.nivelRiego}"
+                            th:data-ruta-imagen="${s.rutaImagen != null ? s.rutaImagen : ''}"
+                            th:data-activo="${s.activo}">
+                        <i class="fas fa-pencil-alt"></i> [[#{accion.actualizar}]]
+                    </button>
+                    <button type="button" class="btn btn-eliminar btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#confirmModal"
+                            th:data-bs-id="${s.idSuculenta}" th:data-bs-descripcion="${s.nombreComun}">
+                        <i class="fa-solid fa-trash"></i> [[#{accion.eliminar}]]
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center p-4" th:if="${suculentas == null or suculentas.empty}">
+        <span>[[#{lista.vacia}]]</span>
+    </div>
+</section>

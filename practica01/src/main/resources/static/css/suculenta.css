@@ -1,0 +1,149 @@
+:root {
+    --cafe-oscuro: #3e2723;
+    --cafe: #5d4037;
+    --cafe-medio: #8d6e63;
+    --cafe-claro: #bcaaa4;
+    --crema: #f3e9dc;
+    --crema-claro: #faf3ea;
+    --acento: #c68b59;
+    --rojo-cafe: #8c3b2e;
+}
+
+body {
+    background-color: var(--crema);
+    color: var(--cafe-oscuro);
+}
+
+.navbar-cafe { background-color: var(--cafe-oscuro); }
+.navbar-cafe .navbar-brand,
+.navbar-cafe .nav-link { color: #efe3d3; }
+.navbar-cafe .nav-link:hover { color: var(--acento); }
+
+.encabezado-cafe {
+    background: linear-gradient(90deg, var(--cafe), var(--cafe-medio));
+    color: var(--crema-claro);
+}
+
+.pie-cafe {
+    background-color: var(--cafe-oscuro);
+    color: #efe3d3;
+}
+
+.fondo-crema { background-color: var(--crema-claro); }
+.bg-cafe { background-color: var(--cafe) !important; color: var(--crema-claro); }
+.bg-cafe-medio { background-color: var(--cafe-medio) !important; color: var(--crema-claro); }
+.bg-error-cafe { background-color: var(--rojo-cafe) !important; color: var(--crema-claro); }
+
+.btn-cafe {
+    background-color: var(--cafe);
+    border-color: var(--cafe);
+    color: var(--crema-claro);
+}
+.btn-cafe:hover, .btn-cafe:focus {
+    background-color: var(--cafe-oscuro);
+    border-color: var(--cafe-oscuro);
+    color: var(--crema-claro);
+}
+
+.btn-editar {
+    background-color: var(--acento);
+    border-color: var(--acento);
+    color: var(--cafe-oscuro);
+}
+.btn-editar:hover {
+    background-color: var(--cafe-medio);
+    border-color: var(--cafe-medio);
+    color: var(--crema-claro);
+}
+
+.btn-eliminar {
+    background-color: var(--rojo-cafe);
+    border-color: var(--rojo-cafe);
+    color: var(--crema-claro);
+}
+.btn-eliminar:hover {
+    background-color: #6e2c22;
+    border-color: #6e2c22;
+    color: var(--crema-claro);
+}
+
+.btn-secundario {
+    background-color: var(--cafe-claro);
+    border-color: var(--cafe-claro);
+    color: var(--cafe-oscuro);
+}
+.btn-secundario:hover {
+    background-color: var(--cafe-medio);
+    border-color: var(--cafe-medio);
+    color: var(--crema-claro);
+}
+
+.modal-content, .toast { background-color: var(--crema-claro); }
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--cafe-medio);
+    box-shadow: 0 0 0 .25rem rgba(141, 110, 99, .25);
+}
+.form-check-input:checked {
+    background-color: var(--cafe);
+    border-color: var(--cafe);
+}
+
+.resumen-total {
+    background-color: var(--cafe);
+    color: var(--crema-claro);
+    border-radius: 2rem;
+    padding: .35rem 1rem;
+    font-weight: 600;
+}
+
+.tarjeta-suculenta {
+    background-color: var(--crema-claro);
+    border: 1px solid var(--cafe-claro);
+    border-radius: .75rem;
+    overflow: hidden;
+    transition: transform .2s, box-shadow .2s;
+}
+.tarjeta-suculenta:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 .5rem 1rem rgba(62, 39, 35, .2);
+}
+.tarjeta-suculenta .imagen-suculenta {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.tarjeta-suculenta .sin-imagen {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--cafe-claro);
+    color: var(--cafe);
+    font-size: 3rem;
+}
+.tarjeta-suculenta .card-footer {
+    background-color: transparent;
+    border-top: 1px solid var(--cafe-claro);
+}
+.tarjeta-inactiva { opacity: .6; }
+
+.nombre-cientifico {
+    font-style: italic;
+    color: var(--cafe-medio);
+}
+.precio-suculenta {
+    color: var(--cafe);
+    font-weight: 700;
+    font-size: 1.15rem;
+}
+
+.insignia-cafe {
+    background-color: var(--cafe-claro);
+    color: var(--cafe-oscuro);
+}
+.badge-riego-bajo { background-color: var(--cafe-claro); color: var(--cafe-oscuro); }
+.badge-riego-medio { background-color: var(--cafe-medio); color: var(--crema-claro); }
+.badge-riego-alto { background-color: var(--cafe-oscuro); color: var(--crema-claro); }
+.badge-estado-activa { background-color: var(--acento); color: var(--cafe-oscuro); }
+.badge-estado-inactiva { background-color: var(--cafe-claro); color: var(--cafe-oscuro); }

@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
         id.value = '';
         mostrarPreview('');
         titulo.textContent = button.getAttribute('data-titulo') || '';
-        header.classList.remove('bg-info', 'bg-warning', 'text-white');
+        header.classList.remove('bg-cafe', 'bg-cafe-medio');
         if (modo === 'editar') {
             const d = button.dataset;
             id.value = d.id || '';
@@ -55,10 +55,10 @@ document.addEventListener('DOMContentLoaded', function () {
             rutaImagen.value = d.rutaImagen || '';
             activo.checked = d.activo === 'true';
             mostrarPreview(rutaImagen.value);
-            header.classList.add('bg-warning');
+            header.classList.add('bg-cafe-medio');
         } else {
             activo.checked = true;
-            header.classList.add('bg-info', 'text-white');
+            header.classList.add('bg-cafe');
         }
     });
 });

@@ -4,19 +4,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
     <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
+    <link th:href="@{/css/suculenta.css}" rel="stylesheet"/>
     <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script th:src="@{/js/rutinas.js}"></script>
 </head>
 
 <header th:fragment="header" class="header">
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
+    <nav class="navbar navbar-expand-sm navbar-dark navbar-cafe p-0">
         <div class="container">
             <a th:href="@{/}" class="navbar-brand"><i class="fa-solid fa-seedling"></i> [[#{aplicacion.titulo}]]</a>
             <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
                 <ul class="navbar-nav">
                     <li class="nav-item px-2"><a class="nav-link" th:href="@{/}">[[#{plantilla.inicio}]]</a></li>
                     <li class="nav-item px-2"><a class="nav-link" th:href="@{/suculenta/listado}">[[#{plantilla.suculentas}]]</a></li>
@@ -24,43 +25,39 @@
             </div>
         </div>
     </nav>
-    <section id="main-header" class="py-2 bg-success text-white d-print-none">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8">
-                    <h1><i class="fa-solid fa-leaf"></i> [[#{plantilla.titulo}]]</h1>
-                </div>
-            </div>
+    <section id="main-header" class="py-4 encabezado-cafe d-print-none">
+        <div class="container text-center">
+            <h1 class="mb-0"><i class="fa-solid fa-leaf"></i> [[#{plantilla.titulo}]]</h1>
         </div>
     </section>
 </header>
 
-<footer th:fragment="footer" class="p-2 mt-5 bg-dark text-white d-print-none">
-    <p class="lead text-center mb-0">[[#{plantilla.derechos}]] &COPY;</p>
+<footer th:fragment="footer" class="p-3 mt-5 pie-cafe text-center d-print-none">
+    <p class="mb-0">[[#{plantilla.derechos}]] &COPY;</p>
 </footer>
 
 <section th:fragment="mostrarToast">
     <div aria-live="polite" aria-atomic="true"
          class="position-fixed top-50 start-50 translate-middle" style="z-index: 1080;">
         <div th:if="${error}" class="toast show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
-            <div class="toast-header text-white bg-danger">
+            <div class="toast-header bg-error-cafe">
                 <i class="fa-solid fa-triangle-exclamation"></i> <strong class="me-auto"> [[#{error}]]</strong>
             </div>
             <div class="toast-body">
                 <p>[[${error}]]</p>
                 <div class="mt-2 pt-2 border-top text-center">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">[[#{accion.cerrar}]]</button>
+                    <button type="button" class="btn btn-secundario btn-sm" data-bs-dismiss="toast">[[#{accion.cerrar}]]</button>
                 </div>
             </div>
         </div>
         <div th:if="${todoOk}" class="toast show" role="status" aria-live="polite" aria-atomic="true" data-bs-autohide="true">
-            <div class="toast-header text-white bg-success">
+            <div class="toast-header bg-cafe">
                 <i class="fa-solid fa-square-check"></i> <strong class="me-auto"> [[#{atencion}]]</strong>
             </div>
             <div class="toast-body">
                 <p>[[${todoOk}]]</p>
                 <div class="mt-2 pt-2 border-top text-center">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">[[#{accion.cerrar}]]</button>
+                    <button type="button" class="btn btn-secundario btn-sm" data-bs-dismiss="toast">[[#{accion.cerrar}]]</button>
                 </div>
             </div>
         </div>
@@ -73,7 +70,7 @@
             <div class="modal-content">
                 <form th:action="${accionEliminar}" method="post">
                     <input type="hidden" th:attr="name=${nombreId}" id="modalId"/>
-                    <div class="modal-header bg-warning text-white">
+                    <div class="modal-header bg-cafe-medio">
                         <h5 class="modal-title" id="modalLabel"><i class="fa-solid fa-circle-exclamation"></i> [[#{accion.confirmar}]]</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="[[#{accion.cerrar}]]"></button>
                     </div>
@@ -82,10 +79,10 @@
                         <h6>[[#{accion.confirmar.texto2}]]</h6>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger">
+                        <button type="submit" class="btn btn-eliminar">
                             <i class="fa-solid fa-trash"></i> [[#{accion.eliminar}]]
                         </button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <button type="button" class="btn btn-secundario" data-bs-dismiss="modal">
                             <i class="fa-solid fa-xmark"></i> [[#{accion.cerrar}]]
                         </button>
                     </div>
